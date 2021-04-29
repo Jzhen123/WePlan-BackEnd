@@ -29,7 +29,7 @@ class UserController extends Controller
       $user = User::create($input);
       
       // User auth access token is generated below
-      $data['token'] = $user->createToken('MyApp')->accessToken;
+      $data['token'] = $user->createToken('WePlan')->accessToken;
       $data['user_data'] = $user;
       
       return response(['data' => $data, 'message' => 'Account created successfully!', 'status' => true]);
