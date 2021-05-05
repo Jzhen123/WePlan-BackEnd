@@ -17,7 +17,7 @@ class GroupController extends Controller
         $user = User::find($request->created_by_user_id);
 
         if ($user) {
-            $groupName = Group::find($request->name);
+            $groupName = Group::where('name', $request->name);
 
             if ($groupName) {
                 return response()->json(['error' => 'There is already a group with this name! Please try another name.'], 422);
