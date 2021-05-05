@@ -9,7 +9,7 @@ use App\Models\User;
 class GroupController extends Controller
 {
     // public function index () {
-
+    //     return
     // }
 
     public function create(Request $request)
@@ -38,8 +38,13 @@ class GroupController extends Controller
 
     // }
 
-    // public function delete () {
+    public function delete (Request $request) {
+        $name = Group::find($request->id)->name;
 
-    // }
+        Group::find($request->id)->delete();
+
+        return response()->json(['message' => "The Group: " . "'$name'" . " has been deleted successfully!" ], 200);
+
+    }
 
 }

@@ -30,3 +30,4 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::post('/group/create', [GroupController::class, 'create']);
+Route::post('/group/delete', [GroupController::class, 'delete']);
