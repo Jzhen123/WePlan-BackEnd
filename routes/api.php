@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GroupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,9 @@ use App\Http\Controllers\UserController;
 */
 
 Route::prefix('auth')->group(function () {
-  
+
     Route::post('/register', [UserController::class, 'register']);
-    
+
     Route::group(['middleware' => ['auth:api']], function () {
         // Gets user and all the data
         Route::get('/user', [UserController::class, 'index']);
@@ -27,3 +28,5 @@ Route::prefix('auth')->group(function () {
         Route::get('/logout', [UserController::class, 'logout']);
     });
 });
+
+Route::post('/group/create', [GroupController::class, 'create']);

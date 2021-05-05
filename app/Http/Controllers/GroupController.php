@@ -14,7 +14,7 @@ class GroupController extends Controller
 
     public function create(Request $request)
     {
-        $user = User::find($request->id);
+        $user = User::find($request->created_by_user_id);
 
         if ($user) {
             $groupName = Group::find($request->name);
@@ -29,7 +29,7 @@ class GroupController extends Controller
             }
 
 
-        } else {
+        } else if (!$user) {
             return response()->json(['error' => 'You do not have access to make a group. Create an account first and then try again!'], 422);
         }
     }
