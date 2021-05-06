@@ -39,9 +39,21 @@ class GroupController extends Controller
         }
     }
 
-    // public function update () {
+    public function update (Request $request) {
+        $group = Group::find($request->id);
+        if ($group) {
+            $input = $request->all();
 
-    // }
+            foreach($input as $key => $value) {
+                if ($value === null) continue;
+                $group[$key] = $value;
+            }
+            $group->save();
+            return response()->json(['data' => $group, 'message' => 'Group Updated successfully!'], 200);
+        } else if (!$group) {
+            return response()->json(['error' => 'Group not found!'], 422);
+        }
+    }
 
     public function delete(Request $request)
     {
