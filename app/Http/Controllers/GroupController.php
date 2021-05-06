@@ -9,9 +9,13 @@ use App\Models\Group_user;
 
 class GroupController extends Controller
 {
-    // public function index () {
-    //     return
-    // }
+    public function index () {
+        return Group::All();
+    }
+
+    public function show($id) {
+        return Group::find($id);
+    }
 
     public function create(Request $request)
     {

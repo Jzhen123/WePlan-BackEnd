@@ -29,5 +29,7 @@ Route::prefix('auth')->group(function () {
     });
 });
 
-Route::post('/group/create', [GroupController::class, 'create']);
-Route::post('/group/delete', [GroupController::class, 'delete']);
+Route::get('/group/all', [GroupController::class, 'index']); // Get all data from Groups table
+Route::get('/group/show/{id}', [GroupController::class, 'show']); // Get all data from a specfic group
+Route::post('/group/create', [GroupController::class, 'create']); // Create a group with certain rules. When you createa group, you get added to the group_users table.
+Route::post('/group/delete', [GroupController::class, 'delete']); // Delete a group
