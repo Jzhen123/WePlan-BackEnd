@@ -16,4 +16,9 @@ class Group extends Model
         'type_id',
         'active'
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'group_users');
+    }
 }
