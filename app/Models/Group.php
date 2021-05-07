@@ -17,10 +17,8 @@ class Group extends Model
         'active'
     ];
 
-    protected $with = ['users'];
-
     public function users()
     {
-        return $this->hasMany(Group_user::class);
+        return $this->belongsToMany(User::class, 'group_users');
     }
 }
