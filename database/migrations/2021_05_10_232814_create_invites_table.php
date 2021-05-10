@@ -17,7 +17,7 @@ class CreateInvitesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('group_id')->constrained();
-            $table->foreignId('receiving_user_id')->constrained();
+            $table->foreignId('receiving_user_id');
             $table->string('token', 16)->unique();
             $table->timestamps();
         });
