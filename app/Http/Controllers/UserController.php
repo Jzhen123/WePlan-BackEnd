@@ -18,12 +18,12 @@ class UserController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'nullable|email|max:64',
+            'email' => 'required|email|max:64|unique:users,email,',
             'password' => 'required|string',
         ]);
 
         if ($validator->fails()) {
-            return response(['message' => 'Validation errors', 'errors' =>$validator->errors(), 'status' => false], 422);
+            return response(['message' => 'Validation errors', 'errors' => $validator->errors(), 'status' => false], 422);
         }
 
         $input = $request->all();
