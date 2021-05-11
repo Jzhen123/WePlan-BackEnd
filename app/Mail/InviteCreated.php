@@ -7,11 +7,12 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Invite;
+use App\Http\Controllers\InviteController;
 
 class InviteCreated extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $invite;
     /**
      * Create a new message instance.
      *
@@ -22,6 +23,9 @@ class InviteCreated extends Mailable
         $this->invite = $invite;
     }
 
+    // public function accept(){
+    //     return $this->
+    // }
     /**
      * Build the message.
      *
@@ -29,7 +33,7 @@ class InviteCreated extends Mailable
      */
     public function build()
     {
-        return $this->from('you@example.com')
-                    ->view('groupInvite');
+        return $this->from('awesome.weplan@gmail.com')
+                    ->view('emails.invite');
     }
 }

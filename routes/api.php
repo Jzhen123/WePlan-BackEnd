@@ -36,5 +36,6 @@ Route::post('/group/create', [GroupController::class, 'create']); // Create a gr
 Route::post('/group/update', [GroupController::class, 'update']); // Update group details
 Route::post('/group/delete', [GroupController::class, 'delete']); // Delete a group
 
+Route::get('/group/invite', [InviteController::class, 'process']);
 Route::post('/group/invite', [InviteController::class, 'process']);
-Route::get('/group/accept/{token}', [InviteController::class, 'accept']);
+Route::get('/group/accept/{token}', [InviteController::class, 'accept'])->name('accept');
