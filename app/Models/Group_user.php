@@ -12,6 +12,7 @@ class Group_user extends Model
         'user_id',
         'group_id'
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
