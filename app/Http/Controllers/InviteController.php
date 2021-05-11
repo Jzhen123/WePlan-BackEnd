@@ -14,11 +14,6 @@ use Illuminate\Http\Request;
 
 class InviteController extends Controller
 {
-    public function invite()
-    {
-        return view('invite');
-    }
-
     public function process(Request $request)
     {
         // validate request
