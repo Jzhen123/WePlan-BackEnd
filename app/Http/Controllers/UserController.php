@@ -7,12 +7,28 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Group_user;
+
 
 class UserController extends Controller
 {
     public function index(Request $request)
     {
-        return $request->user();
+        $user = $request->user();
+
+        foreach($user->groups as $group) {
+            $groupUsers = Group_user::where('group_id', $group->id)->get();
+            $members = [];
+            foreach($groupUsers as $member) {
+                $name = User::find($member->user_id)->name;
+                // $members[$member->user_id] = $name;
+                array_push($members, $name);
+            }
+            $group["members"] = $members;
+        }
+        // Do the same with user's created events
+        // Do the same with group events?
+        return $user;
     }
 
     public function register(Request $request)

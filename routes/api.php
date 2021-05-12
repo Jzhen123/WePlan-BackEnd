@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\InviteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,6 @@ Route::get('/group/show/{id}', [GroupController::class, 'show']); // Get all dat
 Route::post('/group/create', [GroupController::class, 'create']); // Create a group with certain rules. When you createa group, you get added to the group_users table.
 Route::post('/group/update', [GroupController::class, 'update']); // Update group details
 Route::post('/group/delete', [GroupController::class, 'delete']); // Delete a group
+
+Route::post('/group/invite', [InviteController::class, 'process']);
+Route::get('/group/accept/{token}', [InviteController::class, 'accept'])->name('accept');
