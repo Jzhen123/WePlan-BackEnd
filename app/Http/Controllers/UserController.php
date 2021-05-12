@@ -18,14 +18,16 @@ class UserController extends Controller
 
         foreach($user->groups as $group) {
             $groupUsers = Group_user::where('group_id', $group->id)->get();
+            $members = [];
             foreach($groupUsers as $member) {
                 $name = User::find($member->user_id)->name;
-                $members["$member->user_id"] = $name;
+                // $members[$member->user_id] = $name;
+                array_push($members, $name);
             }
             $group["members"] = $members;
         }
-
-        // Do the same with group events
+        // Do the same with user's created events
+        // Do the same with group events?
         return $user;
     }
 
